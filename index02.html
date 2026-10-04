@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>WAITLY | Smart Queue Management</title>
+
+    <link rel="stylesheet" href="style02.css">
+</head>
+
+<body>
+
+    <!-- ================= NAVBAR ================= -->
+
+    <header class="navbar">
+
+    <div class="logo">
+        <span class="logo-icon">W</span>
+
+        <div>
+            <h2>WAITLY</h2>
+            <small>Smart Queue System</small>
+        </div>
+    </div>
+
+
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#join-queue">Join Queue</a>
+        <a href="#track">Track Token</a>
+    </nav>
+
+
+    <div class="portal-buttons">
+
+        <button
+            class="admin-btn"
+            onclick="openAdminLogin()">
+
+            Admin Portal
+
+        </button>
+
+    </div>
+
+</header>
+
+
+    <!-- ================= HERO ================= -->
+
+    <section class="hero" id="home">
+
+        <div class="hero-content">
+
+            <span class="hero-badge">
+                SMART QUEUE MANAGEMENT
+            </span>
+
+            <h1>
+                Your Time Matters.
+                <span>Don't Wait.</span>
+            </h1>
+
+            <p>
+                Join a queue digitally, get your token instantly,
+                and know exactly when your turn is coming.
+            </p>
+
+            <div class="hero-buttons">
+
+                <button
+                    class="primary-btn"
+                    onclick="scrollToJoin()">
+                    Get Your Token
+                </button>
+
+                <button
+                    class="secondary-btn"
+                    onclick="scrollToTrack()">
+                    Track My Token
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- Queue Preview -->
+
+        <div class="hero-dashboard">
+
+            <div class="dashboard-header">
+                <div>
+                    <span>LIVE QUEUE</span>
+                    <h3>Customer Status</h3>
+                </div>
+
+                <div class="live-dot">
+                    <span></span> LIVE
+                </div>
+            </div>
+
+
+            <div class="queue-preview">
+
+                <div class="preview-item active">
+                    <span class="token">A-038</span>
+
+                    <div>
+                        <strong>Now Serving</strong>
+                        <small>Counter 01</small>
+                    </div>
+
+                    <span class="status active-status">
+                        Serving
+                    </span>
+                </div>
+
+
+                <div class="preview-item">
+
+                    <span class="token">A-039</span>
+
+                    <div>
+                        <strong>Waiting</strong>
+                        <small>2 people ahead</small>
+                    </div>
+
+                    <span class="status waiting-status">
+                        Waiting
+                    </span>
+
+                </div>
+
+
+                <div class="preview-item">
+
+                    <span class="token">A-040</span>
+
+                    <div>
+                        <strong>Waiting</strong>
+                        <small>3 people ahead</small>
+                    </div>
+
+                    <span class="status waiting-status">
+                        Waiting
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ================= CUSTOMER PORTAL ================= -->
+
+    <main>
+
+        <section
+            class="customer-section"
+            id="join-queue">
+
+            <div class="section-heading">
+
+                <span class="section-label">
+                    CUSTOMER PORTAL
+                </span>
+
+                <h2>
+                    Join the Queue
+                </h2>
+
+                <p>
+                    Enter your basic details and select the service
+                    you need. WAITLY will generate your token instantly.
+                </p>
+
+            </div>
+
+
+            <div class="customer-layout">
+
+
+                <!-- Registration Form -->
+
+                <div class="customer-form-card">
+
+                    <div class="card-title">
+
+                        <div class="title-icon">
+                            👤
+                        </div>
+
+                        <div>
+                            <h3>Customer Details</h3>
+                            <p>
+                                We need a few basic details
+                            </p>
+                        </div>
+
+                    </div>
+
+
+                    <form id="queueForm">
+
+                        <!-- Name -->
+
+                        <div class="form-group">
+
+                            <label for="customerName">
+                                Full Name
+                            </label>
+
+                            <input
+                                type="text"
+                                id="customerName"
+                                placeholder="Enter your full name"
+                                autocomplete="name"
+                                required>
+
+                            <span
+                                class="input-error"
+                                id="nameError">
+                            </span>
+
+                        </div>
+
+
+                        <!-- Mobile -->
+
+                        <div class="form-group">
+
+                            <label for="customerMobile">
+                                Mobile Number
+                            </label>
+
+                            <input
+                                type="tel"
+                                id="customerMobile"
+                                placeholder="Enter 10-digit mobile number"
+                                maxlength="10"
+                                autocomplete="tel"
+                                required>
+
+                            <span
+                                class="input-error"
+                                id="mobileError">
+                            </span>
+
+                        </div>
+
+
+                        <!-- Email -->
+
+                        <div class="form-group">
+
+                            <label for="customerEmail">
+                                Email
+                                <span>(Optional)</span>
+                            </label>
+
+                            <input
+                                type="email"
+                                id="customerEmail"
+                                placeholder="Enter your email"
+                                autocomplete="email">
+
+                            <span
+                                class="input-error"
+                                id="emailError">
+                            </span>
+
+                        </div>
+
+
+                        <!-- Service -->
+
+                        <div class="form-group">
+
+                            <label for="serviceSelect">
+                                Select Service
+                            </label>
+
+                            <select
+                                id="serviceSelect"
+                                required>
+
+                                <option value="">
+                                    Choose the service you need
+                                </option>
+
+                                <option
+                                    value="General Consultation"
+                                    data-time="10">
+
+                                    General Consultation
+                                    — ~10 min
+
+                                </option>
+
+                                <option
+                                    value="Document Verification"
+                                    data-time="15">
+
+                                    Document Verification
+                                    — ~15 min
+
+                                </option>
+
+                                <option
+                                    value="Customer Support"
+                                    data-time="8">
+
+                                    Customer Support
+                                    — ~8 min
+
+                                </option>
+
+                                <option
+                                    value="Payment / Billing"
+                                    data-time="5">
+
+                                    Payment / Billing
+                                    — ~5 min
+
+                                </option>
+
+                            </select>
+
+                            <span
+                                class="input-error"
+                                id="serviceError">
+                            </span>
+
+                        </div>
+
+
+                        <!-- Consent -->
+
+                        <div class="form-check">
+
+                            <input
+                                type="checkbox"
+                                id="agreeTerms"
+                                required>
+
+                            <label for="agreeTerms">
+                                I confirm that the information provided
+                                is correct.
+                            </label>
+
+                        </div>
+
+
+                        <!-- Submit -->
+
+                        <button
+                            type="submit"
+                            class="submit-queue-btn">
+
+                            <span>Get My Token</span>
+
+                            <span>→</span>
+
+                        </button>
+
+                    </form>
+
+                </div>
+
+
+
+                <!-- Information Card -->
+
+                <div class="queue-info-card">
+
+                    <div class="info-top">
+
+                        <span class="info-label">
+                            HOW IT WORKS
+                        </span>
+
+                        <h3>
+                            Simple. Digital. Stress-free.
+                        </h3>
+
+                    </div>
+
+
+                    <div class="steps">
+
+                        <div class="step">
+
+                            <div class="step-number">
+                                01
+                            </div>
+
+                            <div>
+                                <h4>Enter Your Details</h4>
+
+                                <p>
+                                    Provide your basic information
+                                    and choose the required service.
+                                </p>
+                            </div>
+
+                        </div>
+
+
+                        <div class="step">
+
+                            <div class="step-number">
+                                02
+                            </div>
+
+                            <div>
+                                <h4>Get Your Token</h4>
+
+                                <p>
+                                    WAITLY generates a unique token
+                                    for your queue.
+                                </p>
+                            </div>
+
+                        </div>
+
+
+                        <div class="step">
+
+                            <div class="step-number">
+                                03
+                            </div>
+
+                            <div>
+                                <h4>Track Your Position</h4>
+
+                                <p>
+                                    See people ahead, current token
+                                    and estimated waiting time.
+                                </p>
+                            </div>
+
+                        </div>
+
+
+                        <div class="step">
+
+                            <div class="step-number">
+                                04
+                            </div>
+
+                            <div>
+                                <h4>Get Notified</h4>
+
+                                <p>
+                                    Receive an alert when your turn
+                                    is approaching.
+                                </p>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ================= MY TOKEN ================= -->
+
+        <section
+            class="token-section"
+            id="track">
+
+            <div class="section-heading">
+
+                <span class="section-label">
+                    MY QUEUE
+                </span>
+
+                <h2>
+                    Track Your Token
+                </h2>
+
+                <p>
+                    Your queue information is private and visible
+                    only in your customer session.
+                </p>
+
+            </div>
+
+
+            <!-- Empty State -->
+
+            <div
+                class="token-empty"
+                id="tokenEmpty">
+
+                <div class="empty-icon">
+                    🎟️
+                </div>
+
+                <h3>
+                    No Active Token
+                </h3>
+
+                <p>
+                    You haven't joined a queue yet.
+                </p>
+
+                <button
+                    class="primary-btn"
+                    onclick="scrollToJoin()">
+
+                    Join Queue
+
+                </button>
+
+            </div>
+
+
+            <!-- Token Card -->
+
+            <div
+                class="token-card"
+                id="tokenCard"
+                style="display:none;">
+
+                <div class="token-card-header">
+
+                    <div>
+                        <span>YOUR TOKEN</span>
+
+                        <h2 id="displayToken">
+                            A-000
+                        </h2>
+                    </div>
+
+                    <div
+                        class="token-status"
+                        id="tokenStatus">
+
+                        WAITING
+
+                    </div>
+
+                </div>
+
+
+                <div class="token-details">
+
+                    <div class="token-detail">
+
+                        <span>Customer</span>
+
+                        <strong id="displayName">
+                            —
+                        </strong>
+
+                    </div>
+
+
+                    <div class="token-detail">
+
+                        <span>Service</span>
+
+                        <strong id="displayService">
+                            —
+                        </strong>
+
+                    </div>
+
+
+                    <div class="token-detail">
+
+                        <span>Current Serving</span>
+
+                        <strong id="displayCurrent">
+                            —
+                        </strong>
+
+                    </div>
+
+
+                    <div class="token-detail">
+
+                        <span>People Ahead</span>
+
+                        <strong id="displayAhead">
+                            —
+                        </strong>
+
+                    </div>
+
+
+                    <div class="token-detail">
+
+                        <span>Estimated Wait</span>
+
+                        <strong id="displayWait">
+                            —
+                        </strong>
+
+                    </div>
+
+
+                    <div class="token-detail">
+
+                        <span>Counter</span>
+
+                        <strong id="displayCounter">
+                            —
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Progress -->
+
+                <div class="queue-progress">
+
+                    <div class="progress-header">
+
+                        <span>
+                            Queue Progress
+                        </span>
+
+                        <span id="progressText">
+                            Waiting
+                        </span>
+
+                    </div>
+
+                    <div class="progress-bar">
+
+                        <div
+                            class="progress-fill"
+                            id="progressFill">
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Notification -->
+
+                <div
+                    class="queue-notification"
+                    id="queueNotification">
+
+                    <span>🔔</span>
+
+                    <div>
+
+                        <strong>
+                            Queue Updates
+                        </strong>
+
+                        <p id="notificationText">
+                            You have successfully joined the queue.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <button
+                    class="leave-queue-btn"
+                    onclick="leaveQueue()">
+
+                    Leave Queue
+
+                </button>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+
+    <!-- ================= PORTAL MODAL ================= -->
+
+    <!-- ================= ADMIN LOGIN MODAL ================= -->
+
+<div
+    class="modal-overlay"
+    id="adminLoginModal">
+
+    <div class="portal-modal">
+
+        <button
+            class="modal-close"
+            onclick="closeAdminLogin()">
+
+            ×
+
+        </button>
+
+
+        <div class="modal-icon">
+            🔐
+        </div>
+
+
+        <h2>
+            Admin Login
+        </h2>
+
+
+        <p>
+            Login to access the WAITLY management dashboard.
+        </p>
+
+
+        <form id="adminLoginForm">
+
+            <div class="form-group">
+
+                <label for="adminUsername">
+                    Username
+                </label>
+
+                <input
+                    type="text"
+                    id="adminUsername"
+                    placeholder="Enter admin username"
+                    required>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="adminPassword">
+                    Password
+                </label>
+
+                <input
+                    type="password"
+                    id="adminPassword"
+                    placeholder="Enter admin password"
+                    required>
+
+            </div>
+
+
+            <span
+                class="input-error"
+                id="adminLoginError">
+            </span>
+
+
+            <button
+                type="submit"
+                class="submit-queue-btn">
+
+                <span>
+                    Login to Dashboard
+                </span>
+
+                <span>
+                    →
+                </span>
+
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+
+    <!-- ================= TOAST ================= -->
+
+    <div
+        class="toast"
+        id="toast">
+
+        <span id="toastIcon">✓</span>
+
+        <span id="toastMessage">
+            Success
+        </span>
+
+    </div>
+
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer>
+
+        <div class="footer-brand">
+
+            <h2>WAITLY</h2>
+
+            <p>
+                Smart queue management for modern businesses.
+            </p>
+
+        </div>
+
+
+        <div class="footer-bottom">
+
+            <span>
+                © 2026 WAITLY. All rights reserved.
+            </span>
+
+            <span>
+                Smart Service • Less Waiting
+            </span>
+
+        </div>
+
+    </footer>
+
+
+    <script src="script02.js"></script>
+
+</body>
+</html>
